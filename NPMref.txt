@@ -1,0 +1,3 @@
+create-react-app
+git init
+npm i axios react-router-dom massive express dotenv

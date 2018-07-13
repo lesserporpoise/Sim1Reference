@@ -1,0 +1,4 @@
+node_modules
+.env
+
+***dont forget to put your CONNECTION_STRING and your PORT in the .env ***

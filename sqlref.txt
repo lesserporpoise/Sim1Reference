@@ -1,0 +1,213 @@
+-- CREATE TABLE Icecream(
+--     icecream_id SERIAL PRIMARY KEY,
+--     flavor VARCHAR(40),
+--     price FLOAT
+-- );
+-----------------------------------------------------GET
+-- SELECT * FROM Icecream;
+
+-----------------------------------------------------POST
+-- INSERT INTO Icecream (flavor,price)
+-- VALUES ('strawberry', 15.99);
+
+-- INSERT INTO Icecream(flavor,price)
+-- Values('chocolate','20.99');
+
+-- --------------------------------------------------DELETE
+-- DELETE  FROM Icecream;
+
+-- SELECT * FROM Icecream;
+
+-----------------------------------------------------PUT
+-- UPDATE Icecream
+-- SET flavor='chocolate',
+--     price=5.99
+-- WHERE flavor = 'strawberry';
+
+
+
+-- -- Create an affectedAreas table
+-- CREATE TABLE affectedAreas
+-- (
+--   id SERIAL PRIMARY KEY,
+--   name VARCHAR(40) NOT NULL UNIQUE
+-- );
+
+-- INSERT INTO affectedAreas (id, name) VALUES (1, 'Groin');
+-- INSERT INTO affectedAreas (id, name) VALUES (2, 'Neck');
+-- INSERT INTO affectedAreas (id, name) VALUES (3, 'Leg');
+-- INSERT INTO affectedAreas (id, name) VALUES (4, 'Foot');
+-- INSERT INTO affectedAreas (id, name) VALUES (5, 'Head');
+-- INSERT INTO affectedAreas (id, name) VALUES (6, 'Hand');
+-- INSERT INTO affectedAreas (id, name) VALUES (7, 'Wrist');
+-- INSERT INTO affectedAreas (id, name) VALUES (8, 'Ankle');
+-- INSERT INTO affectedAreas (id, name) VALUES (9, 'Elbow'); 
+
+-- -- Recreate our data from yesterday
+-- CREATE TABLE injuries
+-- (
+--   id SERIAL PRIMARY KEY,
+--   name VARCHAR(40) NOT NULL UNIQUE,
+--   description TEXT,
+--   tth INTEGER NOT NULL,
+--   affectedAreaId INTEGER REFERENCES affectedAreas NOT NULL
+-- );
+
+-- INSERT INTO injuries (id, name, description, tth, affectedAreaId) VALUES (1, 'Pulled Groin', 'Results from putting too much stress on muscles in your groin and thigh.', 2, 1);
+-- INSERT INTO injuries (id, name, description, tth, affectedAreaId) VALUES (2, 'Cervical Radiculopathy', 'Pinched nerve.', 6, 2);
+-- INSERT INTO injuries (id, name, description, tth, affectedAreaId) VALUES (3, 'Herniated Disc', 'Soft substance on the inside of the disc (nucleus pulposi) is pushed out', 12, 2);
+-- INSERT INTO injuries (id, name, description, tth, affectedAreaId) VALUES (4, 'Femur Fracture', 'Bone fracture.', 8, 3);
+-- INSERT INTO injuries (id, name, description, tth, affectedAreaId) VALUES (5, 'Shattered Toenail', '20 percent of the US population suffers from onychorrhexis.', 3, 4);
+-- INSERT INTO injuries (id, name, description, tth, affectedAreaId) VALUES (6, 'Nintendo Thumb', 'Painful affliction of opposable digits.', 1, 6);
+-- INSERT INTO injuries (id, name, description, tth, affectedAreaId) VALUES (7, 'Amnesia', null, 1, 6);
+-- INSERT INTO injuries (id, name, description, tth, affectedAreaId) VALUES (8, 'Pulled Muscle', 'Results from putting too much stress on any muscles.', 2, 1);
+
+-- CREATE TABLE causes
+-- (
+--   id SERIAL PRIMARY KEY,
+--   name VARCHAR(40) NOT NULL UNIQUE
+-- );
+
+-- INSERT INTO causes (id, name) VALUES (1, 'Exploding poached egg');
+-- INSERT INTO causes (id, name) VALUES (2, 'Sneezing');
+-- INSERT INTO causes (id, name) VALUES (3, 'Legend of Zelda');
+-- INSERT INTO causes (id, name) VALUES (4, 'Aerosol can');
+-- INSERT INTO causes (id, name) VALUES (5, 'Superglue');
+-- INSERT INTO causes (id, name) VALUES (6, 'Diving');
+-- INSERT INTO causes (id, name) VALUES (7, 'Snapping a carrot');
+
+-- CREATE TABLE incidents
+-- (
+--   id SERIAL PRIMARY KEY,
+--   state VARCHAR(2) NOT NULL,
+--   injuryId INTEGER REFERENCES injuries NOT NULL,
+--   causeId INTEGER REFERENCES causes NOT NULL
+-- );
+
+-- INSERT INTO incidents (state, injuryId, causeId) VALUES ('VT', 1, 2);
+-- INSERT INTO incidents (state, injuryId, causeId) VALUES ('CT', 5, 3);
+-- INSERT INTO incidents (state, injuryId, causeId) VALUES ('MA', 5, 7);
+-- INSERT INTO incidents (state, injuryId, causeId) VALUES ('AK', 6, 2);
+-- INSERT INTO incidents (state, injuryId, causeId) VALUES ('CA', 3, 5);
+-- INSERT INTO incidents (state, injuryId, causeId) VALUES ('NY', 2, 5);
+-- INSERT INTO incidents (state, injuryId, causeId) VALUES ('WY', 1, 1);
+-- INSERT INTO incidents (state, injuryId, causeId) VALUES ('NY', 1, 6);
+
+-- select incidents.id,state,injuries.name as injury, affectedareas.name as affectedarea,causes.name as cause from incidents
+-- join injuries on incidents.injuryid = injuries.id
+-- join affectedareas on injuries.affectedareaid = affectedareas.id
+-- join causes on caselect * from incidents
+-- where state = 'UT';uses.id=incidents.causeid
+-- where state='CA'
+
+-- insert into incidents(state,injuryid,causeid)
+-- values('UT',2,2);
+
+-- 
+
+-- CREATE TABLE products(
+-- product_id Serial Primary Key,
+-- name varchar(40),
+-- description varchar(80),
+-- price integer,
+-- image_url text);
+
+-- insert into products(name, description, price, image_url)
+-- values('bob','cool',4,'skjddhflajhsdlfkjahsldkjfhalkj')
+
+
+-----------------------------ALSO SEE----------------------------
+
+• Data Types
+ 	• INTEGER														Number
+	• TEXT (VARCHAR)										A string - Varchar(255)
+	• REAL															Don't know
+	• DECIMAL (Scale, precision)				It's like an integer, but the scale is how far it can go left of the decimal, percision is how far it can go right of the decimal
+	• BLOB															1s and 0s as raw data, it can only be small files
+	
+	• PRIMARY KEY												Makes it the primary key data in your SQL - Syntax: email VARCHAR PRIMARY KEY
+	• AUTOINCREMENT											Used pretty much only for the id - Syntax:  id INTEGER PRIMARY KEY AUTOINCREMENT
+
+• Commands
+	• CREATE TABLE [table] (values)			Create a table, then give it a name
+	• Syntax:
+	  	CREATE TABLE Person (
+ 			ID INTEGER PRIMARY KEY AUTOINCREMENT,
+			Name VARCHAR(255),
+			Age INTEGER,
+			Height INTEGER,
+			City VARCHAR(255),
+			FavoriteColor VARCHAR(255)
+		);
+
+	• DROP TABLE [table]								Deletes table - you might need CASCADE after to force it
+
+	• SELECT [items] FROM [table]				Selects from a table - Use * to select everything
+	• Syntax:														SELECT * FROM Person
+	• Notes:														You can't use Parenthesis
+
+	• DELETE [items] FROM [table]				Same as Select, but deletes
+	
+	• UPDATE
+	• Syntax:
+		UPDATE Icecream
+		SET flavor = 'chocolate',
+		price = 5.99
+		WHERE id = 7
+
+	• INSERT INTO [table] (values)			Allows you to add to a table - Needs to be followed by the VALUE command
+	• Syntax:														INSERT INTO table (Name, Color, Age)
+
+	• VALUES (value, value, value)			Insert values after INSERT INTO, the values need to be in the order of the keys - Strings need to be wrapped in ""
+	• Syntax:														VALUES ("Taryn", "Blue", 23)
+
+	• ORDER BY item											Orders the items by the item key - You can also use DESC for descending order, or ASC for Ascending
+	• Syntax:														ORDER BY age DESC
+
+	• WHERE															Where a condition is true, it will return the results
+	• Syntax:														WHERE age > 20
+	
+	• Operators:
+		• =																Equal
+		• != or <>												Not equal
+		• >																Greater than
+		• <																Less than
+		• >=															Greater than or equal
+		• <=															Less than or equal
+		• BETWEEN													Between an inclusive range
+		• LIKE														Search for a pattern
+		• IN															To specify multiple possible values for a column
+	
+	• AND																Allows you to stitch two things together
+	• Syntax:														SELECT * FROM Person WHERE FavoriteColor != "red" AND FavoriteColor != "blue";
+
+	• OR																Same as and, only either can be true instead of both needing both to be true
+	• Syntax:														WHERE FavoriteColor = 'Red' OR FavoriteColor = 'Green';
+
+	• IN																A quicker way of doing multiple selects
+	• Syntax														SELECT * FROM Person WHERE FavoriteColor IN ( "orange", "green", "blue" );
+
+	• SUM																Finds the sum of all items included
+	• Syntax:														SELECT SUM(Quantity) FROM Orders;
+
+	• AVG																Finds the average of all items
+	• Syntax:														SELECT AVG(Total) FROM Invoice
+
+	• LIMIT															How many results you want coming back
+	• Syntax:														LIMIT 10
+
+	• OFFSET														How many further down you want to select from LIMIT
+	• Syntax:														OFFSET 10
+
+	• LIKE															Selecting something loosley, doesn't need capitalization - Use % for a wildcard
+	• Syntax:
+		SELECT * FROM Artist
+		WHERE Name
+		LIKE 'Black%';
+	• Notes:														Use % after to see everything that starts with 'Black%', is it before and after to find everything that has '%Black%' in it
+
+	• MAX, MIX													Finds the lowest or highest value of an item
+	• Syntax:														SELECT FirstName, LastName, MAX(BirthDate) FROM Employee
+
+	• COUNT															Shows how many rows there are in a column
+	• Syntax:														SELECT COUNT(*) FROM Employee WHERE City = "Lethbridge";
