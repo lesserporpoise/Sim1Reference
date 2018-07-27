@@ -206,8 +206,145 @@
 		LIKE 'Black%';
 	• Notes:														Use % after to see everything that starts with 'Black%', is it before and after to find everything that has '%Black%' in it
 
-	• MAX, MIX													Finds the lowest or highest value of an item
+	• MAX, MIN													Finds the lowest or highest value of an item
 	• Syntax:														SELECT FirstName, LastName, MAX(BirthDate) FROM Employee
 
 	• COUNT															Shows how many rows there are in a column
 	• Syntax:														SELECT COUNT(*) FROM Employee WHERE City = "Lethbridge";
+
+
+
+
+//////////////////////////////////   having
+
+select country, count(*) from customer
+group by country
+having count(*) > 4
+order by count(*) desc
+limit 5
+
+
+ making updates in SQL
+
+ -- select * from injuries
+
+-- alter table injuries
+-- add column painlevel integer
+
+-- alter table injuries
+-- drop column painlevel 
+
+-- alter table injuries
+-- add column painlevel integer default 0
+
+-- update  injuries
+-- set painlevel = 3
+-- where id = 6
+
+--many larger companies use Amazon AWS as opposed to heroku hosting service.
+--heroku is a great choice for a smaller compaanies.
+
+--DB constraints:
+     -- NOT NULL , basically says that  null is not an option for that specific column
+
+-- create table contact(
+-- id integer primary key,
+-- name text not null,
+-- email text,
+-- phone text)
+
+-- constraints are established on table setup
+
+-- unique ... there can only be one highlander...
+
+-- create table contact(
+-- id integer primary key,
+-- name text not null,
+-- email text UNIQUE,
+-- phone text)
+
+-- this will only allow us to insert a value in that column once.
+-- nulls are exempt from the unique constraint
+
+-- CHECK
+
+-- we want to make sure that phone numbers have a length of 10
+
+---- create table contact(
+-- id integer primary key,
+-- name text not null,
+-- email text,
+-- phone text,
+-- check (length(phone)=10)
+
+-- null values can dodge check constraints as well.
+
+-- relationships
+
+-- many-to-one
+
+-- foreign keys - this is a way to enforce that the tables both have data.
+
+-- create table books(
+-- id integer primary key,
+-- title text,
+-- authorId integer not null 
+--     references authors (id)) 
+
+-- whatever you are referencing needs to exist before you can use it as a reference
+    
+    
+-- insert into books values(2,'second book',99)
+
+-- select * from books 
+-- join authors on books.authorid = authors.id
+
+-- Create table tickets(
+-- id integer primary key,
+-- authorId integer not null references authors(id)
+-- flight id integer not null references flights(id)
+-- )
+-- insert into tickets values (3,2,2)
+
+-- select * from tickets
+-- join authors on tickets.authorid = authors.id
+-- join flights on flights.id = tickets.flightid
+
+-- delete from flights where id = 1
+
+-- if using passwords, npm i bcrypt, this will help us to make our things work with passwords!
+-- this is a hashing function.  same input, same output.
+
+-- TRANSACTIONS--
+
+-- makes sure that we get all or nothing 
+
+-- select id from invites 
+-- where secretcode = 'abc123';
+
+-- begin;
+-- insert into users...
+-- delete from invites...
+-- commit;
+
+-- OWASP TOP 10 is some good security research I could do.
+
+-- create table membership(
+-- id integer primary key,
+-- userid integer not null references users(id),
+-- groupid integer not null references groups(id))
+
+-- you then join these on the foreign keys
+
+-- google awesome postgres repo on github
+
+-- has all kinds of stuff for the postgresses.
+
+
+
+
+
+
+
+
+	    

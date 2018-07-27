@@ -11,7 +11,7 @@ export default function Display(props) {
        
    </div>
  )
-}
+}0
 
 //PROPS PASSED FROM HERE (BINDING NOT SHOWN, DON'T FORGET!!!)
 
@@ -19,7 +19,7 @@ export default function Display(props) {
 
 //TO HERE
 
-getHistory(){
+// getHistory(){
 
        let window = [];
        for(let i = 0; i< this.state.history.length;i++)
@@ -35,4 +35,4 @@ getHistory(){
                 />)
        }
        return window
-   }
+//    }

@@ -1,0 +1,34 @@
+closures
+
+    function sithin a function (enclosed scope)
+    inner function is returned from outer function
+
+    eg... function outer(){
+        (be sure to return this here) return function inner(){
+
+        }
+    }
+
+    inner function is returned
+ 
+    module pattern
+
+        designed to help us with public and private variables
+        basically this is a function that returns an object. that object has other functions on it that we can use later
+
+
+
+context
+    refers the key word this, depending on context
+    context is where the function is invoked.
+
+    the value of this is determined by where it is invoked
+
+    implicit
+    explicit
+    default
+    arrowfunctions
+
+constructor fns
+    prototypes
+
